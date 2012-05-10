@@ -202,8 +202,11 @@ int wait_button() {
   while (1) {
     for ( int i = RED; i <= YLW; ++i ) {
       if ( button(i) == 1) {
-        led(i, 1);
-        return i;
+        delay(50);
+        if ( button(i) == 1 ) {
+          led(i, 1);
+          return i;
+        }
       }
     }
     
@@ -220,11 +223,17 @@ int wait_button() {
 void wait_release(int b) {
   int delay_us = tone_us[b];
 
-  while ( button(b) == 1 ) {
-    digitalWrite(SPEAKER, HIGH);
-    delayMicroseconds(delay_us/2);
-    digitalWrite(SPEAKER, LOW);
-    delayMicroseconds(delay_us/2);
+  while (1) {
+    while ( button(b) == 1 ) {
+      digitalWrite(SPEAKER, HIGH);
+      delayMicroseconds(delay_us/2);
+      digitalWrite(SPEAKER, LOW);
+      delayMicroseconds(delay_us/2);
+    }
+    delay(50);
+    if ( button(b) == 0 ) {
+      break;
+    }
   }
   
   led(b, 0);
