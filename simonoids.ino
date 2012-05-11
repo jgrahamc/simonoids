@@ -87,9 +87,9 @@ void setup() {
 //               RED GRN BLU YLW
 int games[4] = {   8, 20, 14, 31 };
 
-// The number of button presses in a complete game.  See new_game() for how this is set
-// and the plays array contains the button numbers.  pos is the current position reached
-// in this round.
+// The number of button presses in a complete game.  The plays array contains the button
+// sequence for this round. See new_game() for how these are set.  pos is the current
+// position reached in this round.
 int game;
 int plays[31];
 int pos;
@@ -166,7 +166,7 @@ void win() {
   clear_leds();
 }
 
-// new_game: thinks of a new sequence of lights o flash and sets up a new game
+// new_game: thinks of a new sequence of lights to flash and sets up a new game
 // ready for play.  There are four possible sequence lengths (based on the lengths
 // in the original Simon game): 8, 14, 20 and 31.  These are selected by clicking 
 // the RED, BLU, GRN and YLW buttons in that order.
